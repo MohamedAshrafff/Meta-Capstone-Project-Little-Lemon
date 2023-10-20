@@ -2,7 +2,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import React, { useRef } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/Logo.png'
-import '../Styles/NavBar.css'
+import '../Styles/App.css'
 
 export default function NavBar() {
     const navigate = useNavigate()
@@ -19,7 +19,7 @@ export default function NavBar() {
                 <Link to="/" className='nav-item'>Home</Link>
                 <Link to="/about" className='nav-item'>About</Link>
                 <Link to="/menu" className='nav-item'>Menu</Link>
-                <Link to="/bookings" className='nav-item'>Bookings</Link>
+                <Link to="/bookings" className='nav-item'>Reservations</Link>
                 <Link to="/orderOnline" className='nav-item'>OrderOnline</Link>
                 <Link to="/login" className='nav-item' >Login</Link>
                 <button className="nav-btn nav-close-btn" onClick={ShowNavBar}>

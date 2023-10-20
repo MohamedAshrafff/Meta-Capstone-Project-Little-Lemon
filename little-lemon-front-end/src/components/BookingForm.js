@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../Styles/App.css'
 export default function BookingForm(props) {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('17:00');
@@ -25,31 +25,41 @@ export default function BookingForm(props) {
     const options = props.availableTimes.map(time => <option key={time}>{time}</option>)
 
     return (
-        <form style={{ display: 'grid', maxWidth: '200px', gap: '20px' }} onSubmit={handleSubmit}>
-            <label htmlFor="res-fname">First Name</label>
-            <input type="text" id="res-fname" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required />
+        <section className='form-section'>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="res-fname">First Name:</label>
+                    <input type="text" id="res-fname" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required />
+                </div>
 
-            <label htmlFor="res-lname">Last Name</label>
-            <input type="text" id="res-lname" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required />
+                <div>
+                    <label htmlFor="res-lname">Last Name:</label>
+                    <input type="text" id="res-lname" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required />
+                </div>
+                <div>
+                    <label htmlFor="res-date">Choose date:</label>
+                    <input type="date" id="res-date" value={date} onChange={(event) => setDate(event.target.value)} required />
+                </div>
+                <div>
+                    <label htmlFor="res-time">Choose time:</label>
+                    <select id="res-time" value={time} onChange={handleTimeChange}>
+                        {options}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="guests"># of guests:</label>
+                    <input type="number" placeholder="1" min="1" max="10" id="guests" value={guests} onChange={(event) => setGuests(event.target.value)} minLength={1} />
+                </div>
+                <div>
+                    <label htmlFor="occasion">Occasion:</label>
+                    <select id="occasion" value={occasion} onChange={(event) => setOccasion(event.target.value)}>
+                        <option>Birthday</option>
+                        <option>Anniversary</option>
+                    </select>
+                </div>
 
-            <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" value={date} onChange={(event) => setDate(event.target.value)} required />
-
-            <label htmlFor="res-time">Choose time</label>
-            <select id="res-time" value={time} onChange={handleTimeChange}>
-                {options}
-            </select>
-
-            <label htmlFor="guests">Number of guests</label>
-            <input type="number" placeholder="1" min="1" max="10" id="guests" value={guests} onChange={(event) => setGuests(event.target.value)} minLength={1} />
-
-            <label htmlFor="occasion">Occasion</label>
-            <select id="occasion" value={occasion} onChange={(event) => setOccasion(event.target.value)}>
-                <option>Birthday</option>
-                <option>Anniversary</option>
-            </select>
-
-            <input type="submit" disabled={!isValid()} value="Make Your reservation" aria-label="On Click" />
-        </form>
+                <button type="submit" className="form-btn" disabled={!isValid()} aria-label="On Click" >Make Your reservation</button>
+            </form>
+        </section>
     );
 }
