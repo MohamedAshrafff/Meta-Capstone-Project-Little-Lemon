@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export default function BookingPage() {
     const navigate = useNavigate();
     const [date, setDate] = useState(new Date());
-    const [availableTimes, dispatch] = useReducer(reducer, initializeTimes(date));
 
     const submitForm = (formData) => {
         if (submitAPI(formData)) {
@@ -28,7 +27,7 @@ export default function BookingPage() {
     const reducer = (state, action) => {
         let newState
         switch (action.type) {
-            case 'updateTimes':
+            case 'Update_Times':
                 newState = updateTimes(new Date(action.payload));
                 break;
             default:
@@ -38,6 +37,7 @@ export default function BookingPage() {
     }
 
 
+    const [availableTimes, dispatch] = useReducer(reducer, initializeTimes(date));
     return (
         <>
             <NavBar />
